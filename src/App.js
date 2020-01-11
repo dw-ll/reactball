@@ -5,33 +5,10 @@ import NavBar from "./components/NavBar/NavBar.js";
 import SearchBar from "./components/SearchBar/SearchBar.js";
 import DataSearch from "./components/DataSearch/DataSearch.js";
 
-const chartData = {
-  labels: [
-    "Golden State",
-    "Los Angeles Lakers",
-    "Los Angeles Clippers",
-    "Milwaukee Bucks",
-    "Chicago Bulls"
-  ],
-  datasets: [
-    {
-      label: "Points",
-      data: [10, 2, 3, 4, 5],
-      backgroundColor: [
-        "rgb(29, 66, 138)",
-        "rgb(85,37,130)",
-        "rgb(200,16,46)",
-        "rgb(0,71,27)",
-        "rgb(91,43,130)"
-      ]
-    }
-  ]
-};
-
 class App extends React.Component {
   state = {
     data: {},
-    chartData: chartData
+    chartData: []
   };
 
   render() {

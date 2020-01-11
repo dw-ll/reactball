@@ -1,0 +1,15 @@
+.search-bar {
+  margin: 0 auto;
+  padding: 0px 0px 0px 0px;
+  width: 50%;
+}
+.search-bar[type=text] {
+  width: 100%;
+  padding: 24px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+.search-result {
+  width: 25%;
+  border: 1px solid black;
+}

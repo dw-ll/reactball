@@ -31,30 +31,7 @@ const chartData = {
 class App extends React.Component {
   state = {
     data: {},
-    chartData: chartData,
-    loading: false,
-    inputValue: ""
-  };
-  search = async val => {
-    this.setState({ loading: true });
-    const res = await axios(
-      `https://www.balldontlie.io/api/v1/players?search=${val}`
-    );
-    const mainData = await res.data.results;
-    this.setState({ data: mainData });
-
-    if (this.state.data !== undefined) {
-      const firstPlayerID = mainData.data.data[0].id;
-      console.log(firstPlayerID);
-    }
-
-    this.setState({ mainData, loading: false });
-    console.log(res);
-  };
-
-  onChangeHandler = async e => {
-    this.search(e.target.value);
-    this.setState({ inputValue: e.target.value });
+    chartData: chartData
   };
 
   render() {
@@ -62,9 +39,11 @@ class App extends React.Component {
       <div className="App">
         <NavBar />
         <div className="App-content">
-          <SearchBar />
+          <div className="search-container">
+            <SearchBar className="app-search-bar" />
+          </div>
           <div className="table-container">
-            {/* <DataSearch data={this.state.chartData} /> */}
+            <DataSearch data={this.state.chartData} />
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar.js";
+import SearchBar from "./components/SearchBar/SearchBar.js";
 import DataSearch from "./components/DataSearch/DataSearch.js";
 
 const chartData = {
@@ -30,6 +31,7 @@ const chartData = {
 class App extends React.Component {
   state = {
     data: {},
+    chartData: chartData,
     loading: false,
     inputValue: ""
   };
@@ -38,20 +40,21 @@ class App extends React.Component {
     const res = await axios(
       `https://www.balldontlie.io/api/v1/players?search=${val}`
     );
-    const statsRes = await axios("https://www.balldontlie.io/api/v1/stats");
     const mainData = await res.data.results;
-    const playerStats = await statsRes.data.results;
+    this.setState({ data: mainData });
+
+    if (this.state.data !== undefined) {
+      const firstPlayerID = mainData.data.data[0].id;
+      console.log(firstPlayerID);
+    }
 
     this.setState({ mainData, loading: false });
-    this.setState({ data: playerStats });
     console.log(res);
   };
 
   onChangeHandler = async e => {
     this.search(e.target.value);
     this.setState({ inputValue: e.target.value });
-    console.log(this.state.data);
-    console.log(Date.now());
   };
 
   render() {
@@ -59,13 +62,9 @@ class App extends React.Component {
       <div className="App">
         <NavBar />
         <div className="App-content">
-          <input
-            value={this.state.value}
-            onChange={e => this.onChangeHandler(e)}
-            placeholder="Type something to search"
-          />
+          <SearchBar />
           <div className="table-container">
-            <DataSearch data={this.state.data} />
+            {/* <DataSearch data={this.state.chartData} /> */}
           </div>
         </div>
       </div>

@@ -7,5 +7,6 @@
   top: 45px;
   z-index: 99;
   max-height: 150px;
+  min-width: 200px;
   overflow-y: auto;
 }

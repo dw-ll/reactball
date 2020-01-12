@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -5,13 +6,18 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
-import dataReducer from "./reducers/addData.js";
+import allReducers from "./reducers/";
 import "bootstrap/dist/css/bootstrap.min.css";
 /// STORE -> GLOBALIZE STATE
 /// ACTION -> A MODIFICATION TO BE MADE
-const store = createStore(dataReducer);
-console.log(store);
 
+const store = createStore(
+  allReducers,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+store.subscribe(() => console.log(store.getState()));
+// store.dispatch(increment());
+// store.dispatch(increment());
 ReactDOM.render(
   <Provider store={store}>
     <App />

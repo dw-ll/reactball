@@ -1,11 +1,18 @@
 import * as React from "react";
 import axios from "axios";
 import { Form, FormControl, ListGroup } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
+import { addPlayer } from "../../actions/addAction.js";
+import { removePlayer } from "../../actions/removeAction.js";
 import "./SearchBar.css";
+import $ from "jquery";
 
 const SearchBar = () => {
   const [data, setData] = React.useState([]);
   const [value, setValue] = React.useState("");
+  const playerList = useSelector(state => state.players);
+  const addDispatch = useDispatch(addPlayer);
+  const removeDispatch = useDispatch(removePlayer);
 
   const search = async val => {
     const res = await axios(
@@ -14,17 +21,14 @@ const SearchBar = () => {
     const responseData = await res.data.data;
 
     if (responseData.length > 0) {
-      console.log(responseData);
       setData(responseData);
     } else if (responseData.length <= 0) {
-      console.log("Empty data.");
       setData([]);
     }
   };
 
   const onChangeHandler = async e => {
     if (e.target.value === "" || e.target.value.length < 3) {
-      console.log("Blank query.");
       setValue(e.target.value);
       setData([]);
     } else {
@@ -32,6 +36,15 @@ const SearchBar = () => {
       setValue(e.target.value);
     }
   };
+
+  $(".result").on("click", function() {
+    var $this = $(this);
+    if ($this.text() in playerList) {
+      console.log($this.text() + "is already in player list.");
+    } else {
+      addDispatch(addPlayer($this.text()));
+    }
+  });
 
   return (
     <div>
@@ -50,7 +63,7 @@ const SearchBar = () => {
         <ListGroup>
           {data.map(function(item, i) {
             return (
-              <ListGroup.Item action>
+              <ListGroup.Item action className="result" key={i}>
                 {item.first_name} {item.last_name}
               </ListGroup.Item>
             );

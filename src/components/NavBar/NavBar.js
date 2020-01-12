@@ -20,6 +20,7 @@ const NavBar = () => {
       <NavbarGroup align={Alignment.LEFT}>
         <NavbarHeading className="nav-bar-brand">Ball Don't Lie</NavbarHeading>
         <NavbarDivider />
+        <SearchBar />
       </NavbarGroup>
     </Navbar>
   );

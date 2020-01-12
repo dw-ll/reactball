@@ -6,7 +6,6 @@
   padding: 0px 0px 0px 0px;
   width: 50%;
   outline: none;
-  
 }
 .search-bar[type="text"] {
   width: 100%;
@@ -18,6 +17,7 @@
   list-style-type: none;
 }
 .search-result {
+  cursor: ;
   font-size: 15px;
   list-style-type: none;
   cursor: hand;
@@ -27,6 +27,13 @@
 }
 .search-result:hover {
   cursor: hand;
+  background-color: #e1e8ed;
+}
+.search-result-anchor {
+  color: black;
+}
+.search-result-anchor:hover {
+  color: black;
 }
 .results {
   padding: 20px 0px 0px 0px;

@@ -1,15 +1,36 @@
 .search-bar {
+  position: absolute;
+  left: 0;
+  top: 5;
   margin: 0 auto;
   padding: 0px 0px 0px 0px;
   width: 50%;
+  outline: none;
+  
 }
-.search-bar[type=text] {
+.search-bar[type="text"] {
   width: 100%;
   padding: 24px 20px;
   margin: 8px 0;
   box-sizing: border-box;
 }
+.result-list {
+  list-style-type: none;
+}
 .search-result {
-  width: 25%;
-  border: 1px solid black;
+  font-size: 15px;
+  list-style-type: none;
+  cursor: hand;
+  width: 100%;
+  overflow-y: scroll;
+  border: 0.5px solid grey;
+}
+.search-result:hover {
+  cursor: hand;
+}
+.results {
+  padding: 20px 0px 0px 0px;
+  width: 100%;
+  max-height: 350px;
+  overflow-y: scroll;
 }

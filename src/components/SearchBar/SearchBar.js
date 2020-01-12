@@ -1,6 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import { H5, MenuItem, Switch } from "@blueprintjs/core";
+import { H5, MenuItem, Divider, Switch } from "@blueprintjs/core";
 import { Select, Suggest } from "@blueprintjs/select";
 import "./SearchBar.css";
 
@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const search = async val => {
     const res = await axios(
-      `https://www.balldontlie.io/api/v1/players?search=${val}`
+      `https://www.balldontlie.io/api/v1/players?search=${val}&per_page=100`
     );
     const responseData = await res.data.data;
 
@@ -24,7 +24,7 @@ const SearchBar = () => {
   };
 
   const onChangeHandler = async e => {
-    if (e.target.value === "") {
+    if (e.target.value === "" || e.target.value.length < 3) {
       console.log("Blank query.");
       setValue(e.target.value);
       setData([]);
@@ -40,16 +40,22 @@ const SearchBar = () => {
         className="search-bar"
         value={value}
         onChange={e => onChangeHandler(e)}
-        placeholder="Type something to search"
+        placeholder="Search for a player"
       />
 
-      {data.map(function(item, i) {
-        return (
-          <li className="search-result" key={item.id}>
-            {item.first_name} {item.last_name}
-          </li>
-        );
-      })}
+      <div className="results">
+        {data.map(function(item, i) {
+          return (
+            <li className="search-result" key={item.id}>
+              <a href="#">
+                {item.first_name} {item.last_name}
+              </a>
+              <Divider vertical={true} />
+              {item.team.full_name}
+            </li>
+          );
+        })}
+      </div>
     </div>
   );
 };

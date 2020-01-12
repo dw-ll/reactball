@@ -1,27 +1,18 @@
 import * as React from "react";
 import "./NavBar.css";
-import { Classes, Divider } from "@blueprintjs/core";
 import SearchBar from "../SearchBar/SearchBar.js";
+import {  Navbar } from "react-bootstrap";
 
-import {
-  Alignment,
-  Button,
-  H5,
-  Navbar,
-  NavbarDivider,
-  NavbarGroup,
-  NavbarHeading,
-  Switch
-} from "@blueprintjs/core";
+
 
 const NavBar = () => {
   return (
-    <Navbar className="nav-bar bp3-dark">
-      <NavbarGroup align={Alignment.LEFT}>
-        <NavbarHeading className="nav-bar-brand">Ball Don't Lie</NavbarHeading>
-        <NavbarDivider />
+    <Navbar bg="light" expand="md">
+      <Navbar.Brand href="#home">Reactball</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
         <SearchBar />
-      </NavbarGroup>
+      </Navbar.Collapse>
     </Navbar>
   );
 };

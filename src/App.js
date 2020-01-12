@@ -3,7 +3,8 @@ import axios from "axios";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar.js";
 import SearchBar from "./components/SearchBar/SearchBar.js";
-import DataSearch from "./components/DataSearch/DataSearch.js";
+import Graph from "./components/Graph/Graph.js";
+import DataTable from "./components/Table/Table.js";
 
 class App extends React.Component {
   state = {
@@ -16,11 +17,11 @@ class App extends React.Component {
       <div className="App">
         <NavBar />
         <div className="App-content">
-          <div className="search-container">
-            <SearchBar className="app-search-bar" />
-          </div>
           <div className="table-container">
-            <DataSearch data={this.state.chartData} />
+            <DataTable data={this.state.chartData} />
+          </div>
+          <div className="graph-container">
+            <Graph data={this.state.chartData} />
           </div>
         </div>
       </div>

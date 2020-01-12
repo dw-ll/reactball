@@ -1,7 +1,6 @@
 import * as React from "react";
 import axios from "axios";
-import { H5, MenuItem, Divider, Switch } from "@blueprintjs/core";
-import { Select, Suggest } from "@blueprintjs/select";
+import { Form, FormControl, ListGroup } from "react-bootstrap";
 import "./SearchBar.css";
 
 const SearchBar = () => {
@@ -36,25 +35,27 @@ const SearchBar = () => {
 
   return (
     <div>
-      <input
-        className="search-bar"
-        value={value}
-        onChange={e => onChangeHandler(e)}
-        placeholder="Search for a player"
-      />
-
+      <div>
+        <Form inline className="search-bar">
+          <FormControl
+            type="text"
+            value={value}
+            onChange={e => onChangeHandler(e)}
+            placeholder="Search for a player"
+            className="mr-sm-2"
+          />
+        </Form>
+      </div>
       <div className="results">
-        {data.map(function(item, i) {
-          return (
-            <li className="search-result" key={item.id}>
-              <a href="#">
+        <ListGroup>
+          {data.map(function(item, i) {
+            return (
+              <ListGroup.Item action>
                 {item.first_name} {item.last_name}
-              </a>
-              <Divider vertical={true} />
-              {item.team.full_name}
-            </li>
-          );
-        })}
+              </ListGroup.Item>
+            );
+          })}
+        </ListGroup>
       </div>
     </div>
   );

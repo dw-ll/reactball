@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import dataReducer from "./reducers/addData.js";
+import "bootstrap/dist/css/bootstrap.min.css";
 /// STORE -> GLOBALIZE STATE
 /// ACTION -> A MODIFICATION TO BE MADE
 const store = createStore(dataReducer);

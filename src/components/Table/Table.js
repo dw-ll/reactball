@@ -12,22 +12,6 @@ const DataTable = () => {
   const players = useSelector(state => state.players);
   const playerData = useSelector(state => state.playerData);
 
-  var cData = [];
-
-  const search = async val => {
-    const res = await axios(
-      `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${val}`
-    )
-      .then(result => {
-        const responseData = result.data.data;
-        console.log(responseData);
-        return responseData;
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   React.useEffect(() => {
     console.log("====Players has been updated: ");
     Object.keys(players).map(function(item, i) {
@@ -56,21 +40,21 @@ const DataTable = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {completeData &&
-            completeData.map(function(item, i) {
-              console.log(item);
+          {playerData &&
+            Object.keys(playerData).map(function(item, i) {
+              console.log(playerData[item][0]);
               return (
                 <tr key={i}>
-                  <td>{players[item.player_id]}</td>
-                  <td>{item.pts}</td>
-                  <td>{item.ast}</td>
-                  <td>{item.reb}</td>
-                  <td>{item.stl}</td>
-                  <td>{item.blk}</td>
-                  <td>{item.turnover}</td>
+                  <td>{item}</td>
+                  <td>{playerData[item][0].pts}</td>
+                  <td>{playerData[item][0].ast}</td>
+                  <td>{playerData[item][0].reb}</td>
+                  <td>{playerData[item][0].stl}</td>
+                  <td>{playerData[item][0].blk}</td>
+                  <td>{playerData[item][0].turnover}</td>
                 </tr>
               );
-            })} */}
+            })}
         </tbody>
       </Table>
     </div>

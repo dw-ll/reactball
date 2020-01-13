@@ -39,10 +39,12 @@ const SearchBar = () => {
 
   $(".result").on("click", function() {
     var $this = $(this);
+    var playerID = $this.attr("value");
+    console.log(playerID);
     if ($this.text() in playerList) {
       console.log($this.text() + "is already in player list.");
     } else {
-      addDispatch(addPlayer($this.text()));
+      addDispatch(addPlayer($this.text(), playerID));
     }
   });
 
@@ -63,7 +65,7 @@ const SearchBar = () => {
         <ListGroup>
           {data.map(function(item, i) {
             return (
-              <ListGroup.Item action className="result" key={i}>
+              <ListGroup.Item action className="result" key={i} value={item.id}>
                 {item.first_name} {item.last_name}
               </ListGroup.Item>
             );

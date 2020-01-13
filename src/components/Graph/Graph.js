@@ -9,7 +9,7 @@ class Graph extends React.Component {
     };
   }
   render() {
-    return <Bar data={this.state.chartData} maintainAspectRatio={true}></Bar>;
+    return <Bar className="stat-graph"data={this.state.chartData} maintainAspectRatio={true}></Bar>;
   }
 }
 export default Graph;

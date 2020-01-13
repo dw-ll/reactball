@@ -1,28 +1,43 @@
 import * as React from "react";
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, connect } from "react-redux";
+import { addPlayerData } from "../../actions/addPlayerDataAction.js";
 import Table from "react-bootstrap/Table";
+function mapStateToProps(state) {
+  return { completeData: state.playerData };
+}
 const DataTable = () => {
-  const [completeData, setCompleteData] = React.useState([]);
-  const [currentData, setCurrentData] = React.useState({});
+  const [completeData, setCompleteData] = React.useState({});
+  const playerAdd = useDispatch(addPlayerData);
   const players = useSelector(state => state.players);
-  var cData = {};
-  React.useEffect(players => {
-    if (!completeData) {
-    }
-  });
+  const playerData = useSelector(state => state.playerData);
+
+  var cData = [];
+
   const search = async val => {
-    try {
-      const res = await axios(
-        `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${val}`
-      );
-      const responseData = res.data.data;
-      console.log(responseData);
-      return responseData;
-    } catch (err) {
-      console.log(err);
-    }
+    const res = await axios(
+      `https://www.balldontlie.io/api/v1/season_averages?player_ids[]=${val}`
+    )
+      .then(result => {
+        const responseData = result.data.data;
+        console.log(responseData);
+        return responseData;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
+
+  React.useEffect(() => {
+    console.log("====Players has been updated: ");
+    Object.keys(players).map(function(item, i) {
+      console.log(item);
+    });
+
+    Object.keys(players).map(function(item, i) {
+      playerAdd(addPlayerData(item, players[item]));
+    });
+  }, [players, playerAdd]);
 
   return (
     <div>
@@ -41,35 +56,24 @@ const DataTable = () => {
           </tr>
         </thead>
         <tbody>
-          {Object.keys(players).map(function(item, i) {
-            var currentPlayerData = search(players[item])
-              .then(result => {
-                cData = JSON.parse(JSON.stringify(result[0]));
-
-                // setCurrentData(cData);
-              })
-              .catch(err => {
-                console.log(err);
-              });
-            if (cData !== undefined) {
-              console.log("cData is here." + cData);
-              console.log(cData);
+          {/* {completeData &&
+            completeData.map(function(item, i) {
+              console.log(item);
               return (
                 <tr key={i}>
-                  <td>{item}</td>
-                  <td>{currentData.pts}</td>
-                  <td>{currentData.ast}</td>
-                  <td>{currentData.reb}</td>
-                  <td>{currentData.stl}</td>
-                  <td>{currentData.blk}</td>
-                  <td>{currentData.turnover}</td>
+                  <td>{players[item.player_id]}</td>
+                  <td>{item.pts}</td>
+                  <td>{item.ast}</td>
+                  <td>{item.reb}</td>
+                  <td>{item.stl}</td>
+                  <td>{item.blk}</td>
+                  <td>{item.turnover}</td>
                 </tr>
               );
-            }
-          })}
+            })} */}
         </tbody>
       </Table>
     </div>
   );
 };
-export default DataTable;
+export default connect(mapStateToProps, { addPlayerData })(DataTable);

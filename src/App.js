@@ -14,27 +14,23 @@ const App = () => {
   const [data, setData] = React.useState([]);
   const dispatch = useDispatch(increment);
   const counter = useSelector(state => state.counter);
+  const players = useSelector(state => state.players);
+  React.useEffect(() => {
+    console.log(players);
+  }, [players]);
+
   return (
     <div className="App">
       <NavBar />
       <div className="App-content">
         <div className="table-container">
-          <DataTable data={data} />
+          <DataTable />
         </div>
         <div className="graph-container">
           <Graph data={data} />
         </div>
       </div>
-      <div className="current-players">
-        <Button
-          onClick={() => {
-            dispatch(increment());
-          }}
-        >
-          Increment
-        </Button>
-        <h1>Counter: {counter}</h1>
-      </div>
+      <div className="current-players"></div>
     </div>
   );
 };

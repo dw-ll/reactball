@@ -10,32 +10,28 @@ const Graph = () => {
   const [chartData, setChartData] = React.useState({});
   const playerData = useSelector(state => state.playerData);
   const [playerList, setPlayerList] = React.useState([]);
-  const graphData = useSelector(state => state.graphData);
+  const graphableData = useSelector(state => state.graphData);
   const addData = useDispatch(addGraphData);
 
   React.useEffect(() => {
-    console.log(graphData);
-    setPlayerList(Object.keys(playerData));
-    console.log(playerList);
-    Object.keys(playerData).map(
-      function(item, i) {
-        if (graphData.labels.indexOf(item) > -1) {
-          console.log(item + "already in chart data.");
-          return false;
-        } else {
-          addData(
-            addGraphData(item, playerData[item][0].pts, "rgb(29, 66, 138)")
-          );
-        }
-      },
-      [playerData, graphData]
-    );
-  });
+    Object.keys(playerData).map(function(item, i) {
+      if (graphableData.labels.indexOf(item) > -1) {
+        console.log(item + "already in chart data.");
+        return false;
+      } else {
+        addData(
+          addGraphData(item, playerData[item][0].pts, "rgb(29, 66, 138)")
+        );
+      }
+    });
+    setChartData(graphableData);
+  }, [playerData, graphableData, addData]);
   return (
     <Bar
       className="stat-graph"
-      data={graphData}
-      maintainAspectRatio={true}
+      data={chartData}
+      redraw={true}
+      maintainAspectRatio={false}
     ></Bar>
   );
 };

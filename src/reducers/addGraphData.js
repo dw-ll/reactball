@@ -7,7 +7,7 @@ const graphDataReducer = (
 ) => {
   // eslint-disable-next-line default-case
   switch (action.type) {
-    case "ADD":
+    case "ADD_DATA":
       if (
         action.label_name !== undefined &&
         action.data !== undefined &&

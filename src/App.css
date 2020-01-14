@@ -9,6 +9,7 @@
 }
 .table-conatiner {
   flex-grow: 1;
+  margin-right: 100px !important;
 }
 .graph-container {
   flex-grow: 1;

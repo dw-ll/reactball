@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import "./App.css";
 
 const App = () => {
-  const playerList = useSelector(state => state.players);
   return (
     <div className="App">
       <NavBar />
@@ -23,7 +22,6 @@ const App = () => {
           </Row>
         </Container>
       </div>
-      <div className="current-players"></div>
     </div>
   );
 };

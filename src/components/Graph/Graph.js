@@ -15,6 +15,8 @@ function getRandomRBG() {
 }
 const Graph = () => {
   const [chartData, setChartData] = React.useState({});
+
+
   const playerData = useSelector(state => state.playerData);
   const graphableData = useSelector(state => state.graphData);
   const addData = useDispatch(addGraphData);
@@ -22,7 +24,6 @@ const Graph = () => {
   React.useEffect(() => {
     Object.keys(playerData).map(function(item, i) {
       if (graphableData.labels.indexOf(item) > -1) {
-        console.log(item + "already in chart data.");
         return false;
       } else {
         addData(addGraphData(item, playerData[item][0].pts, getRandomRBG()));

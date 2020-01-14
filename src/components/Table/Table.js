@@ -3,11 +3,11 @@ import axios from "axios";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { addPlayerData } from "../../actions/addPlayerDataAction.js";
 import Table from "react-bootstrap/Table";
-function mapStateToProps(state) {
-  return { completeData: state.playerData };
-}
+
 const DataTable = () => {
   const [completeData, setCompleteData] = React.useState({});
+
+  
   const playerAdd = useDispatch(addPlayerData);
   const players = useSelector(state => state.players);
   const playerData = useSelector(state => state.playerData);
@@ -54,4 +54,4 @@ const DataTable = () => {
     </div>
   );
 };
-export default connect(mapStateToProps, { addPlayerData })(DataTable);
+export default DataTable;

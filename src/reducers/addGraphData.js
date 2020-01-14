@@ -1,7 +1,7 @@
 const graphDataReducer = (
   state = {
     labels: [],
-    datasets: [{ label: "Points", data: [], backgroundColor: [] }]
+    datasets: [{ label: "", data: [], backgroundColor: [] }]
   },
   action
 ) => {

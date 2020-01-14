@@ -1,15 +1,21 @@
 import * as React from "react";
-import { Bar, Line, Pie } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { addGraphData } from "../../actions/addGraphDataAction.js";
 
 function mapStateToProps(state) {
-  return { chartData: state.graphData };
+  console.log("Inside mapStateToProps");
+  return { chartData: state.playerData };
+}
+function getRandomRBG() {
+  var r = Math.floor(Math.random() * 256);
+  var g = Math.floor(Math.random() * 256);
+  var b = Math.floor(Math.random() * 256);
+  return "rgb(" + r + "," + g + "," + b + ")";
 }
 const Graph = () => {
   const [chartData, setChartData] = React.useState({});
   const playerData = useSelector(state => state.playerData);
-  const [playerList, setPlayerList] = React.useState([]);
   const graphableData = useSelector(state => state.graphData);
   const addData = useDispatch(addGraphData);
 
@@ -19,20 +25,21 @@ const Graph = () => {
         console.log(item + "already in chart data.");
         return false;
       } else {
-        addData(
-          addGraphData(item, playerData[item][0].pts, "rgb(29, 66, 138)")
-        );
+        addData(addGraphData(item, playerData[item][0].pts, getRandomRBG()));
+        return setChartData(graphableData);
       }
     });
-    setChartData(graphableData);
   }, [playerData, graphableData, addData]);
   return (
-    <Bar
-      className="stat-graph"
-      data={chartData}
-      redraw={true}
-      maintainAspectRatio={false}
-    ></Bar>
+    <div>
+      <h2> 2019 Average Points</h2>
+      <Bar
+        className="stat-graph"
+        data={graphableData}
+        redraw={true}
+        maintainAspectRatio={true}
+      ></Bar>
+    </div>
   );
 };
 export default connect(mapStateToProps, { addGraphData })(Graph);

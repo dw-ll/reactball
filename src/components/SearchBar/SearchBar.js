@@ -16,7 +16,7 @@ const SearchBar = () => {
 
   const search = async val => {
     const res = await axios(
-      `https://www.balldontlie.io/api/v1/players?search=${val}&per_page=100`
+      `https://www.balldontlie.io/api/v1/players?search=${val}&per_page=25`
     );
     const responseData = await res.data.data;
 

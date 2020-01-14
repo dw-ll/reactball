@@ -22,7 +22,7 @@ const DataTable = () => {
     <div>
       <h3>2019-2020 Season Averages</h3>
 
-      <Table responsive>
+      <Table bordered striped responsive >
         <thead>
           <tr>
             <th>Player</th>

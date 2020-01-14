@@ -13,11 +13,6 @@ const DataTable = () => {
   const playerData = useSelector(state => state.playerData);
 
   React.useEffect(() => {
-    console.log("====Players has been updated: ");
-    Object.keys(players).map(function(item, i) {
-      console.log(item);
-    });
-
     Object.keys(players).map(function(item, i) {
       playerAdd(addPlayerData(item, players[item]));
     });
@@ -42,7 +37,6 @@ const DataTable = () => {
         <tbody>
           {playerData &&
             Object.keys(playerData).map(function(item, i) {
-              console.log(playerData[item][0]);
               return (
                 <tr key={i}>
                   <td>{item}</td>

@@ -1,7 +1,6 @@
 .table {
   margin: 0;
 }
-
 .graphs {
-  display: flex;
+  display: inline;
 }

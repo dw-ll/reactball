@@ -1,7 +1,7 @@
 const graphAssistsDataReducer = (
   graphAssists = {
     labels: [],
-    datasets: [{ label: "", data: [], backgroundColor: [] }]
+    datasets: [{ label: "Assists", data: [], backgroundColor: [] }]
   },
   action
 ) => {

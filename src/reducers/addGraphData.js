@@ -1,7 +1,14 @@
 const graphDataReducer = (
   state = {
     labels: [],
-    datasets: [{ label: "", data: [], backgroundColor: [] }]
+    datasets: [
+      {
+        label: "Points",
+        data: [],
+        backgroundColor: [],
+        hoverBackgroundColor: []
+      }
+    ]
   },
   action
 ) => {
@@ -16,6 +23,7 @@ const graphDataReducer = (
         state.labels.push(action.label_name);
         state.datasets[0].data.push(action.data);
         state.datasets[0].backgroundColor.push(action.color);
+        state.datasets[0].hoverBackgroundColor.push("rgb(43,43,43)");
         return state;
       } else {
         return state;

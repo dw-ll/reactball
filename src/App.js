@@ -9,7 +9,7 @@ import "./App.css";
 const App = () => {
   return (
     <div className="App">
-      <NavBar />
+      <NavBar className="header" />
       <div className="App-content">
         <h2 className="content-header">Reactball 🏀</h2>
         <h5>An app to compare and visualize NBA stats 📊</h5>
@@ -24,6 +24,12 @@ const App = () => {
           </Row>
         </Container>
       </div>
+      <footer className="footer">
+        <p>Created by Daniel Williams</p>
+        <p>
+          <a href="https://github.com/dw-ll/reactball">Code</a>
+        </p>
+      </footer>
     </div>
   );
 };

@@ -5,10 +5,12 @@
 .App-content {
   align-items: center;
   padding: 20px;
+  min-height: calc(100vh - 40px);
 }
-.content-header{
- 
+.header{
+
 }
+
 .data-content {
   margin-left: 500px;
 }
@@ -27,4 +29,9 @@
 
   justify-content: center;
   display: flex;
+}
+.footer {
+  height: 100%;
+  border-bottom: 1px solid grey;
+  background-color: rgb(246, 248, 248);
 }

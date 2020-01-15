@@ -1,7 +1,14 @@
 const graphReboundsDataReducer = (
   graphAssists = {
     labels: [],
-    datasets: [{ label: "", data: [], backgroundColor: [] }]
+    datasets: [
+      {
+        label: "Rebounds",
+        data: [],
+        backgroundColor: [],
+        hoverBackgroundColor: []
+      }
+    ]
   },
   action
 ) => {
@@ -16,6 +23,8 @@ const graphReboundsDataReducer = (
         graphAssists.labels.push(action.label_name);
         graphAssists.datasets[0].data.push(action.data);
         graphAssists.datasets[0].backgroundColor.push(action.color);
+        graphAssists.datasets[0].hoverBackgroundColor.push("rgb(43,43,43)");
+
         return graphAssists;
       } else {
         return graphAssists;

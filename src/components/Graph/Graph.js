@@ -4,6 +4,7 @@ import { Bar } from "react-chartjs-2";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { addGraphData } from "../../actions/addGraphDataAction.js";
 import { addGraphReboundsData } from "../../actions/addGraphReboundsAction.js";
+import "./Graph.css";
 
 function mapStateToProps(state) {
   console.log("Inside mapStateToProps");
@@ -39,7 +40,7 @@ const Graph = () => {
   return (
     <div className="graphs">
       <div className="stat-graph">
-        <h2> 2019 Average Points</h2>
+        <h2 className="graph-title"> 2019 Average Points</h2>
         <Bar
           data={graphableData}
           redraw={true}
@@ -47,7 +48,7 @@ const Graph = () => {
         ></Bar>
       </div>
       <div className="stat-graph">
-        <h2> 2019 Average Rebounds</h2>
+        <h2 className="graph-title"> 2019 Average Rebounds</h2>
         <Bar
           data={graphableRebounds}
           redraw={true}

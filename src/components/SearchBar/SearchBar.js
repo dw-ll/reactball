@@ -1,19 +1,21 @@
 import * as React from "react";
 import axios from "axios";
-import { Form, FormControl, ListGroup } from "react-bootstrap";
+import { Form, FormControl, ListGroup, Toast } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { addPlayer } from "../../actions/addAction.js";
-import { removePlayer } from "../../actions/removeAction.js";
+import { invalidAction } from "../../actions/invalidAction.js";
 import "./SearchBar.css";
 import $ from "jquery";
 
 const SearchBar = () => {
   const [data, setData] = React.useState([]);
+  const [showToast, setShowToast] = React.useState(false);
   const [value, setValue] = React.useState("");
+
   const playerList = useSelector(state => state.players);
   const addDispatch = useDispatch(addPlayer);
-  const removeDispatch = useDispatch(removePlayer);
-
+  const invalidDispatch = useDispatch(invalidAction);
+  const toggleToast = () => setShowToast(!showToast);
   const search = async val => {
     const res = await axios(
       `https://www.balldontlie.io/api/v1/players?search=${val}&per_page=25`
@@ -43,6 +45,7 @@ const SearchBar = () => {
     console.log(playerID);
     if ($this.text() in playerList) {
       console.log($this.text() + "is already in player list.");
+      invalidDispatch(invalidAction(true));
     } else {
       addDispatch(addPlayer($this.text(), playerID));
     }
@@ -61,6 +64,7 @@ const SearchBar = () => {
           />
         </Form>
       </div>
+
       <div className="results">
         <ListGroup>
           {data.map(function(item, i) {

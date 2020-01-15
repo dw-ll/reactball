@@ -1,18 +1,26 @@
 import * as React from "react";
 import "./NavBar.css";
 import SearchBar from "../SearchBar/SearchBar.js";
-import {  Navbar } from "react-bootstrap";
-
-
+import { Navbar, Toast } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { invalidAction } from "../../actions/invalidAction.js";
 
 const NavBar = () => {
+  const invalid = useSelector(state => state.invalidAction);
+  const validate = useDispatch(invalidAction);
+  const toggleToast = () => {
+    validate(invalidAction(false));
+  };
   return (
     <Navbar bg="light" expand="md">
       <Navbar.Brand href="#home">Reactball</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <SearchBar />
-      </Navbar.Collapse>
+      <SearchBar className=" mr-sm-2" />
+      <Toast show={invalid} onClose={toggleToast} className="invalid-toast">
+        <Toast.Header></Toast.Header>
+        <Toast.Body>
+          We either can't find this player or we already have for you!
+        </Toast.Body>
+      </Toast>
     </Navbar>
   );
 };

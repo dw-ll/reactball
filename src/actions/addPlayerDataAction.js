@@ -7,7 +7,7 @@ export const addPlayerData = (name, id) => {
       )
       .then(response => {
         if (response.data.data[0].length === 0) {
-          dispatch({ type: "FAIL", name: name });
+          dispatch({ type: "invalidAction", isInvalid: true });
         } else {
           dispatch({ type: "SUCCESS", name: name, obj: response.data.data });
         }

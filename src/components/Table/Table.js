@@ -16,7 +16,7 @@ const DataTable = () => {
   }, [players, playerAdd]);
 
   $(document).ready(function() {
-    $("#myInput").on("keyup", function() {
+    $("#player-search").on("keyup", function() {
       var value = $(this)
         .val()
         .toLowerCase();
@@ -38,7 +38,7 @@ const DataTable = () => {
         class="form-control"
         id="player-search"
         type="text"
-        placeholder="Enter player name"
+        placeholder="Enter player name or statistic eg. Stephen Curry, 23.5 ... "
       />
 
       <Table bordered striped responsive>

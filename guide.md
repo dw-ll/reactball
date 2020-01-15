@@ -221,11 +221,11 @@ export default playerDataReducer;
 ```
 - Finally, the Table component will dynamically render the ```playerData``` object that it is listening to:
 ```HTML
-  <tbody>
+  <tbody id="players-table">
           {playerData &&
             Object.keys(playerData).map(function(item, i) {
               return (
-                <tr key={i}>
+                <tr key={i} id="player-row">
                   <td>{item}</td>
                   <td>{playerData[item][0].pts}</td>
                   <td>{playerData[item][0].ast}</td>
@@ -238,6 +238,32 @@ export default playerDataReducer;
             })}
         </tbody>
 ```
+- Filtering of the table's dataset is done with some jquery. We take in the input from the search bar above the table, and check each row of the table and apply a  ```filter()``` function to each value to see if it matches the input, and we toggle that row on if it does, off if it doesn't. We can use this functionality to search for the name of the player, or a specific stat value. 
+```HTML
+ <input
+        class="form-control"
+        id="player-search"
+        type="text"
+        placeholder="Enter player name or statistic eg. Stephen Curry, 23.5 ..."
+      />
+```
+```js
+ $(document).ready(function() {
+    $("#player-search").on("keyup", function() {
+      var value = $(this)
+        .val()
+        .toLowerCase();
+      $("#players-table tr").filter(function() {
+        $(this).toggle(
+          $(this)
+            .text()
+            .toLowerCase()
+            .indexOf(value) > -1
+        );
+      });
+    });
+  });
+  ```
 - ##### Graph 
 ---
 The Graph component shares a lot of the same behavior with the Table component; but how the Table component is reliant on the ```players``` object in the store, the Graph component is reliant on the ```playersData``` the Table component is responsible for.

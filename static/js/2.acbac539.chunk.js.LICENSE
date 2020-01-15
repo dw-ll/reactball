@@ -5,13 +5,6 @@
 */
 
 /*!
- * Chart.js v2.9.3
- * https://www.chartjs.org
- * (c) 2019 Chart.js Contributors
- * Released under the MIT License
- */
-
-/*!
  * jQuery JavaScript Library v3.4.1
  * https://jquery.com/
  *
@@ -35,6 +28,13 @@
    *
    * Date: 2019-04-08
    */
+
+/*!
+ * Chart.js v2.9.3
+ * https://www.chartjs.org
+ * (c) 2019 Chart.js Contributors
+ * Released under the MIT License
+ */
 
 /*
 object-assign

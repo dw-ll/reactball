@@ -12,7 +12,7 @@ const App = () => {
       <NavBar />
       <div className="App-content">
         <h2 className="content-header">Reactball 🏀</h2>
-        <h5>An app to compare and visualize NBA stats.</h5>
+        <h5>An app to compare and visualize NBA stats 📊</h5>
         <Container className="data-content">
           <Row className="data-row">
             <Col className="table-col">

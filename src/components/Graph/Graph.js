@@ -1,7 +1,9 @@
 import * as React from "react";
+import { Container, Row } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { addGraphData } from "../../actions/addGraphDataAction.js";
+import { addGraphReboundsData } from "../../actions/addGraphReboundsAction.js";
 
 function mapStateToProps(state) {
   console.log("Inside mapStateToProps");
@@ -14,32 +16,44 @@ function getRandomRBG() {
   return "rgb(" + r + "," + g + "," + b + ")";
 }
 const Graph = () => {
-  const [chartData, setChartData] = React.useState({});
-
-
   const playerData = useSelector(state => state.playerData);
   const graphableData = useSelector(state => state.graphData);
+  const graphableRebounds = useSelector(state => state.graphRebounds);
+
   const addData = useDispatch(addGraphData);
+  const addReboundsData = useDispatch(addGraphReboundsData);
 
   React.useEffect(() => {
     Object.keys(playerData).map(function(item, i) {
       if (graphableData.labels.indexOf(item) > -1) {
         return false;
       } else {
-        addData(addGraphData(item, playerData[item][0].pts, getRandomRBG()));
-        return setChartData(graphableData);
+        var playerColor = getRandomRBG();
+        addData(addGraphData(item, playerData[item][0].pts, playerColor));
+        addReboundsData(
+          addGraphReboundsData(item, playerData[item][0].reb, playerColor)
+        );
       }
     });
-  }, [playerData, graphableData, addData]);
+  }, [playerData, graphableData, addData, addReboundsData]);
   return (
-    <div>
-      <h2> 2019 Average Points</h2>
-      <Bar
-        className="stat-graph"
-        data={graphableData}
-        redraw={true}
-        maintainAspectRatio={true}
-      ></Bar>
+    <div className="graphs">
+      <div className="stat-graph">
+        <h2> 2019 Average Points</h2>
+        <Bar
+          data={graphableData}
+          redraw={true}
+          maintainAspectRatio={true}
+        ></Bar>
+      </div>
+      <div className="stat-graph">
+        <h2> 2019 Average Rebounds</h2>
+        <Bar
+          data={graphableRebounds}
+          redraw={true}
+          maintainAspectRatio={true}
+        ></Bar>
+      </div>
     </div>
   );
 };

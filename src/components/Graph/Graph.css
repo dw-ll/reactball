@@ -1,7 +1,7 @@
 .table {
   margin: 0;
 }
-.stat-graph {
-  position: relative;
-  min-width: 650px;
+
+.graphs {
+  display: flex;
 }

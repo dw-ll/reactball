@@ -1,13 +1,13 @@
 # Reactball :basketball:
 
-##### Reactball is a React app that queries the balldontlie API and visualizes it's response.
+##### Reactball is a React app that queries the [balldontlie] API and visualizes it's response.
 
 
 # Features 
 ---
 
   - Search for a NBA player to display their average stats from the current season.
-  - Search for multiple NBA players to compare their respective average states from the current season.
+  - A table containing multiple selected NBA players to compare their respective average stats from the current season.
   - A graph visualization to compare the respective stats from the current players selected.
 
 ### Components, Store, Structure 
@@ -316,6 +316,7 @@ export default graphDataReducer;
   );
 };
 ```
+###### *The "2019 Average Rebounds" graph follows the exact same flow of data as above, only with the rebounds data point.
 - ##### App.js
 ---
 - The components defined above are all children of ```App.js```:
@@ -380,4 +381,5 @@ $ npm start
   [axios]:<https://github.com/axios/axios>
   [chart.js]:<https://www.chartjs.org/>
   [React Bootstrap]:<https://react-bootstrap.github.io/>
+  [jquery]: http://jquery.com
   

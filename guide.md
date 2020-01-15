@@ -366,7 +366,7 @@ $ cd reactball
 $ npm install -d
 $ npm start
 ```
-###### If there are issues, the project is also hosted [here].
+###### If there are issues, the project is also hosted [via] Github pages.
 ### Bugs
 ---
 ###### There were a few things I ran into, regarding the responses from the API that I did not have the time to work around:
@@ -382,4 +382,5 @@ $ npm start
   [chart.js]:<https://www.chartjs.org/>
   [React Bootstrap]:<https://react-bootstrap.github.io/>
   [jquery]: http://jquery.com
+  [via]:<https://dw-ll.github.io/reactball/>
   

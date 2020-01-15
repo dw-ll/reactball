@@ -3,28 +3,47 @@ import axios from "axios";
 import { useSelector, useDispatch, connect } from "react-redux";
 import { addPlayerData } from "../../actions/addPlayerDataAction.js";
 import Table from "react-bootstrap/Table";
+import $ from "jquery";
 
 const DataTable = () => {
-  const [completeData, setCompleteData] = React.useState({});
-
-  
   const playerAdd = useDispatch(addPlayerData);
   const players = useSelector(state => state.players);
   const playerData = useSelector(state => state.playerData);
-
   React.useEffect(() => {
     Object.keys(players).map(function(item, i) {
       playerAdd(addPlayerData(item, players[item]));
     });
   }, [players, playerAdd]);
 
+  $(document).ready(function() {
+    $("#myInput").on("keyup", function() {
+      var value = $(this)
+        .val()
+        .toLowerCase();
+      $("#players-table tr").filter(function() {
+        $(this).toggle(
+          $(this)
+            .text()
+            .toLowerCase()
+            .indexOf(value) > -1
+        );
+      });
+    });
+  });
+
   return (
     <div>
       <h3>2019-2020 Season Averages</h3>
+      <input
+        class="form-control"
+        id="player-search"
+        type="text"
+        placeholder="Enter player name"
+      />
 
-      <Table bordered striped responsive >
+      <Table bordered striped responsive>
         <thead>
-          <tr>
+          <tr class="stat-types">
             <th>Player</th>
             <th>Points</th>
             <th>Assists</th>
@@ -34,11 +53,11 @@ const DataTable = () => {
             <th>Turnovers</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="players-table">
           {playerData &&
             Object.keys(playerData).map(function(item, i) {
               return (
-                <tr key={i}>
+                <tr id="player-row" key={i}>
                   <td>{item}</td>
                   <td>{playerData[item][0].pts}</td>
                   <td>{playerData[item][0].ast}</td>

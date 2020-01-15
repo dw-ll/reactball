@@ -16,10 +16,12 @@ const NavBar = () => {
       <Navbar.Brand href="#home">Reactball</Navbar.Brand>
       <SearchBar className=" mr-sm-2" />
       <Toast show={invalid} onClose={toggleToast} className="invalid-toast">
-        <Toast.Header></Toast.Header>
-        <Toast.Body>
-          We either can't find this player or we already have for you!
-        </Toast.Body>
+        <Toast.Header>
+          {" "}
+          <small>
+            We either can't find this player or we already have for you!
+          </small>
+        </Toast.Header>
       </Toast>
     </Navbar>
   );

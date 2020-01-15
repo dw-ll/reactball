@@ -4,9 +4,9 @@
 }
 .results {
   position: absolute;
-  top: 68px;
+  top: 45px;
   z-index: 99;
   max-height: 150px;
-  min-width: 195px;
+  min-width: 193px;
   overflow-y: auto;
 }

@@ -7,15 +7,11 @@ import { useSelector } from "react-redux";
 import "./App.css";
 
 const App = () => {
-   
-
-
   return (
     <div className="App">
       <NavBar />
       <div className="App-content">
-        
-        <h2>Reactball 🏀</h2>
+        <h2 className="content-header">Reactball 🏀</h2>
         <h5>An app to compare and visualize NBA stats.</h5>
         <Container className="data-content">
           <Row className="data-row">

@@ -2,6 +2,7 @@
 .nav-bar{
     color:#8A9BA8;
     background-color: #292c34;
+    max-height:100px;
 }
 .nav-bar-brand{
     font-size: 30px;

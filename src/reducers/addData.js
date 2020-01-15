@@ -9,7 +9,6 @@ const dataReducer = (state = {}, action) => {
     case "DELETE":
       delete state[action.name];
       break;
-
     default:
       return state;
   }

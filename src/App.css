@@ -4,13 +4,16 @@
 }
 .App-content {
   align-items: center;
-  padding: 150px;
+  padding: 20px;
+}
+.content-header{
+ 
 }
 .data-content {
   margin-left: 500px;
 }
 .table-col {
-  margin-bottom: 250px;
+  margin-bottom: 150px;
 }
 .row {
   display: inline !important;
